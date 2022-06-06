@@ -1,7 +1,7 @@
-import { enemyHeight, enemyWidth, scenePadding } from "./constants";
-import { EnemySpawn, Vector } from "./types";
-import { getRandomSnakeLines } from "./utils";
-import _ from "lodash";
+import { enemyHeight, enemyWidth, scenePadding } from './constants';
+import { EnemySpawn, Vector } from './types';
+import { getRandomSnakeLines } from './utils';
+import times from 'lodash/times';
 
 /**
  * Generate a random position for an enemy. Tries to responsively account for enemy widths and padding.
@@ -17,9 +17,9 @@ export const getRandomSpawnPosition = (enemyWidth: number): Vector => {
 const levelCreators: Array<() => EnemySpawn[]> = [
   // Level 1
   () => {
-    return _.times<EnemySpawn>(10, () => ({
-      variant: "normal",
-      style: "Red",
+    return times<EnemySpawn>(10, () => ({
+      variant: 'normal',
+      style: 'Red',
       delay: 2,
       position: getRandomSpawnPosition(enemyWidth),
       speed: 0.1,
@@ -27,18 +27,18 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   },
   // Level 2
   () => {
-    return _.times<EnemySpawn>(15, (i) =>
+    return times<EnemySpawn>(15, (i) =>
       i % 5
         ? {
-            variant: "normal",
-            style: "Red",
+            variant: 'normal',
+            style: 'Red',
             delay: 1.5,
             position: getRandomSpawnPosition(enemyWidth),
             speed: 0.1,
           }
         : {
-            variant: "sine",
-            style: "Purple",
+            variant: 'sine',
+            style: 'Purple',
             delay: 2,
             position: getRandomSpawnPosition(300),
             speed: 0.06,
@@ -50,37 +50,37 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   // Level 3
   () => {
     return [
-      ..._.times<EnemySpawn>(3, () => ({
-        variant: "normal",
-        style: "Red",
+      ...times<EnemySpawn>(3, () => ({
+        variant: 'normal',
+        style: 'Red',
         delay: 0,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.1,
       })),
       {
-        variant: "normal",
-        style: "Red",
+        variant: 'normal',
+        style: 'Red',
         delay: 3,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.1,
       },
-      ..._.times<EnemySpawn>(4, () => ({
-        variant: "normal",
-        style: "Red",
+      ...times<EnemySpawn>(4, () => ({
+        variant: 'normal',
+        style: 'Red',
         delay: 0,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.1,
       })),
       {
-        variant: "normal",
-        style: "Red",
+        variant: 'normal',
+        style: 'Red',
         delay: 4,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.1,
       },
-      ..._.times<EnemySpawn>(6, () => ({
-        variant: "normal",
-        style: "Red",
+      ...times<EnemySpawn>(6, () => ({
+        variant: 'normal',
+        style: 'Red',
         delay: 0,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.1,
@@ -90,9 +90,9 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   // Level 4
   () => {
     return [
-      ..._.times<EnemySpawn>(12, () => ({
-        variant: "normal",
-        style: "Green",
+      ...times<EnemySpawn>(12, () => ({
+        variant: 'normal',
+        style: 'Green',
         delay: 1.5,
         position: getRandomSpawnPosition(enemyWidth),
         speed: 0.18,
@@ -102,9 +102,9 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   // Level 5
   () => {
     return [
-      ..._.times<EnemySpawn>(10, () => ({
-        variant: "sine",
-        style: "Purple",
+      ...times<EnemySpawn>(10, () => ({
+        variant: 'sine',
+        style: 'Purple',
         delay: 2,
         position: getRandomSpawnPosition(400 + enemyWidth),
         speed: 0.1,
@@ -116,9 +116,9 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   // Level 6
   () => {
     return [
-      ..._.times<EnemySpawn>(50, () => ({
-        variant: "snake",
-        style: "Blue",
+      ...times<EnemySpawn>(50, () => ({
+        variant: 'snake',
+        style: 'Blue',
         delay: 0.3,
         position: getRandomSpawnPosition(enemyWidth),
         lines: getRandomSnakeLines(true),
@@ -128,12 +128,12 @@ const levelCreators: Array<() => EnemySpawn[]> = [
   },
   // Level 7
   () => {
-    return _.times<EnemySpawn>(50, () => {
+    return times<EnemySpawn>(50, () => {
       switch (Math.floor(Math.random() * 4)) {
         case 0:
           return {
-            variant: "sine",
-            style: "Purple",
+            variant: 'sine',
+            style: 'Purple',
             delay: 1 + Math.random() * 1,
             position: getRandomSpawnPosition(500 + enemyWidth),
             speed: 0.12,
@@ -142,8 +142,8 @@ const levelCreators: Array<() => EnemySpawn[]> = [
           };
         case 1:
           return {
-            variant: "snake",
-            style: "Blue",
+            variant: 'snake',
+            style: 'Blue',
             delay: 0.3 + Math.random() * 1,
             position: getRandomSpawnPosition(enemyWidth),
             lines: getRandomSnakeLines(Math.random() > 0.5 ? true : false),
@@ -151,8 +151,8 @@ const levelCreators: Array<() => EnemySpawn[]> = [
           };
         default:
           return {
-            variant: "normal",
-            style: "Green",
+            variant: 'normal',
+            style: 'Green',
             delay: 1 + Math.random() * 1,
             position: getRandomSpawnPosition(enemyWidth),
             speed: 0.18,
@@ -170,13 +170,13 @@ export function createLevel(level: number) {
 }
 
 export const levelBackgrounds = [
-  "hsla(0, 100%, 50%, 0.15)",
-  "hsla(40, 100%, 50%, 0.15)",
-  "hsla(80, 100%, 50%, 0.15)",
-  "hsla(120, 100%, 50%, 0.15)",
-  "hsla(200, 100%, 50%, 0.15)",
-  "hsla(280, 100%, 50%, 0.15)",
-  "hsla(0, 100%, 50%, 0.3)",
-  "hsla(0, 100%, 100%, 0.5)",
-  "hsla(0, 100%, 50%, 0)",
+  'hsla(0, 100%, 50%, 0.15)',
+  'hsla(40, 100%, 50%, 0.15)',
+  'hsla(80, 100%, 50%, 0.15)',
+  'hsla(120, 100%, 50%, 0.15)',
+  'hsla(200, 100%, 50%, 0.15)',
+  'hsla(280, 100%, 50%, 0.15)',
+  'hsla(0, 100%, 50%, 0.3)',
+  'hsla(0, 100%, 100%, 0.5)',
+  'hsla(0, 100%, 50%, 0)',
 ];
