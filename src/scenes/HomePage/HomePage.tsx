@@ -1,4 +1,4 @@
-import { Hero, Section, SectionList, Form, Container } from "./components";
+import { Hero, Section, SectionList, Form, Container } from './components';
 
 const sections = Array(10)
   .fill(null)

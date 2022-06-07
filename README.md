@@ -6,7 +6,7 @@
       ** Frontpage requirements: **
 - [ ] Use `contain` and `content-visibility` for “everything” below the fold.
 - [ ] Fix layout shifting of the hero image with HTML/CSS.
-- [ ] Don’t lazy load the Hero section (Fix JS waterfall).
+- [x] Don’t lazy load the Hero section (Fix JS waterfall).
 - [ ] Lazy load the entire Form component.
 - [ ] Only load the phone number validation if I’m actually interacting with the form.
 - [ ] Replace moment.js with a smaller date library (which supports tree-shaking?).
