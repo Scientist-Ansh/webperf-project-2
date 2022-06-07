@@ -1,5 +1,7 @@
 {
   "name": "home-page",
+  "title": "Home Page",
+  "sideEffects":false,
   "version": "0.0.0",
   "dependencies": {
     "@apollo/client": "^3.6.6",
