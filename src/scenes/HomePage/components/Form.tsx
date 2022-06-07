@@ -1,31 +1,31 @@
-import { useForm, Controller } from "react-hook-form";
-import { PhoneNumber, PhoneNumberUtil } from "google-libphonenumber";
-import DatePicker from "react-datepicker";
-import moment from "moment";
+import { useForm, Controller } from 'react-hook-form';
+import { PhoneNumber, PhoneNumberUtil } from 'google-libphonenumber';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
-import "react-datepicker/dist/react-datepicker.css";
-import s from "./Form.module.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import s from './Form.module.css';
 
 function daysUntilBirthday(date: Date) {
   const m1 = moment(date);
   m1.set({ year: moment().year() });
   if (m1.isBefore(moment())) {
-    m1.add(1, "y");
+    m1.add(1, 'y');
   }
-  return m1.diff(moment(), "days");
+  return m1.diff(moment(), 'days');
 }
 
 function validatePhoneNumber(value: string) {
   const instance = PhoneNumberUtil.getInstance();
   try {
-    const phoneNumber = instance.parseAndKeepRawInput(value, "IS");
-    return instance.isValidNumberForRegion(phoneNumber as PhoneNumber, "IS");
+    const phoneNumber = instance.parseAndKeepRawInput(value, 'IS');
+    return instance.isValidNumberForRegion(phoneNumber as PhoneNumber, 'IS');
   } catch (e) {
     return false;
   }
 }
 
-export const Form = () => {
+const Form = () => {
   const {
     register,
     control,
@@ -34,7 +34,7 @@ export const Form = () => {
     formState: { errors },
   } = useForm();
 
-  const birthday = watch("birthday");
+  const birthday = watch('birthday');
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
@@ -45,7 +45,7 @@ export const Form = () => {
           <label>Name</label>
           <input
             className={s.input}
-            {...register("name", { required: true })}
+            {...register('name', { required: true })}
           />
           {errors.name && <p className={s.error}>This field is required.</p>}
         </div>
@@ -54,7 +54,7 @@ export const Form = () => {
           <input
             className={s.input}
             type="email"
-            {...register("email", { required: true, pattern: /.+@.+\..+/ })}
+            {...register('email', { required: true, pattern: /.+@.+\..+/ })}
           />
           {errors.email && (
             <p className={s.error}>
@@ -67,7 +67,7 @@ export const Form = () => {
           <input
             className={s.input}
             type="tel"
-            {...register("phoneNumber", {
+            {...register('phoneNumber', {
               required: true,
               validate: validatePhoneNumber,
             })}
@@ -108,3 +108,5 @@ export const Form = () => {
     </section>
   );
 };
+
+export default Form;
