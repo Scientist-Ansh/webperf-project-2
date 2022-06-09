@@ -16,15 +16,23 @@ function daysUntilBirthday(date: Date) {
 }
 
 async function validatePhoneNumber(value: string) {
-  // ignore next line
-
-  const instance = PhoneNumberUtil.getInstance();
+  const instance = await getLibPhoneNumber();
   try {
     const phoneNumber = instance.parseAndKeepRawInput(value, 'IS');
     return instance.isValidNumberForRegion(phoneNumber as PhoneNumber, 'IS');
   } catch (e) {
     return false;
   }
+}
+
+let phoneNumberPromise: null | Promise<PhoneNumberUtil> = null;
+function getLibPhoneNumber() {
+  if (!phoneNumberPromise) {
+    phoneNumberPromise = import('google-libphonenumber').then((lib) =>
+      lib.PhoneNumberUtil.getInstance()
+    );
+  }
+  return phoneNumberPromise;
 }
 
 const Form = () => {

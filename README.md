@@ -8,7 +8,7 @@
 - [x] Fix layout shifting of the hero image with HTML/CSS.
 - [x] Don’t lazy load the Hero section (Fix JS waterfall).
 - [x] Lazy load the entire Form component.
-- [ ] Only load the phone number validation if I’m actually interacting with the form.
+- [x] Only load the phone number validation if I’m actually interacting with the form.
 - [x] Replace moment.js with a smaller date library (which supports tree-shaking?).
 - [x] Ignore side-effects in the News component.
       ** Videogame requirements: **
