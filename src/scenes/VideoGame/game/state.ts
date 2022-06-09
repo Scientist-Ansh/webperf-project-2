@@ -1,5 +1,5 @@
-import { createLevel } from "./levels";
-import { Entity, GameState } from "./types";
+import { createLevel } from './levels';
+import { Entity, GameState } from './types';
 
 /**
  * Create the initial game state.

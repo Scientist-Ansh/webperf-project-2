@@ -1,8 +1,8 @@
-import classnames from "classnames";
-import s from "../ui/styles.module.css";
-import { barrelLength, shotVelocity } from "./constants";
-import { getBarrelPosition } from "./utils";
-import { Enemy, EnemySpawn, Entity } from "./types";
+import classnames from 'classnames';
+import s from '../ui/styles.module.css';
+import { barrelLength, shotVelocity } from './constants';
+import { getBarrelPosition } from './utils';
+import { Enemy, EnemySpawn, Entity } from './types';
 
 /**
  * Create an enemy element and metadata.
@@ -13,16 +13,17 @@ export function createEnemy(enemySpawn: EnemySpawn, spawnTime: number): Entity {
     style,
   } = enemySpawn;
 
-  const el = document.createElement("div");
+  const el = document.createElement('div');
   el.className = classnames(s.entity, s.entityEnemy, s[`entityEnemy${style}`]);
-  el.style.left = `${x}px`;
-  el.style.top = `${y}px`;
+  el.style.transform = `translate(${x}px, ${y}px)`;
 
   return {
-    type: "enemy",
+    type: 'enemy',
     el,
     spawnTime,
     enemySpawn,
+    x,
+    y,
   };
 }
 
@@ -37,15 +38,16 @@ export function createShot(barrelAngle: number): Entity {
     x: window.innerHeight * shotVelocity * Math.cos(barrelAngle),
     y: window.innerHeight * shotVelocity * Math.sin(barrelAngle),
   };
-  const el = document.createElement("div");
+  const el = document.createElement('div');
   el.className = classnames(s.entity, s.entityShot);
-  el.style.left = `${x}px`;
-  el.style.top = `${y}px`;
+  el.style.transform = `translate(${x}px, ${y}px)`;
 
   return {
-    type: "shot",
+    type: 'shot',
     velocity,
     el,
+    x,
+    y,
   };
 }
 

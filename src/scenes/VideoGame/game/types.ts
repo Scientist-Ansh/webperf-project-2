@@ -27,7 +27,7 @@ export interface GameState {
   isGameOver: boolean;
 }
 
-export type EnemyStyle = "Red" | "Green" | "Purple" | "Blue";
+export type EnemyStyle = 'Red' | 'Green' | 'Purple' | 'Blue';
 
 /**
  * Different enemy spawn choices, with different properties each.
@@ -40,17 +40,17 @@ export interface EnemySpawnBase {
 }
 
 export interface EnemySpawnNormal extends EnemySpawnBase {
-  variant: "normal";
+  variant: 'normal';
 }
 
 export interface EnemySpawnSine extends EnemySpawnBase {
-  variant: "sine";
+  variant: 'sine';
   sineRadius: number;
   sineSpeed: number;
 }
 
 export interface EnemySpawnSnake extends EnemySpawnBase {
-  variant: "snake";
+  variant: 'snake';
   lines: Vector[];
 }
 
@@ -62,16 +62,18 @@ export type EnemySpawn = EnemySpawnNormal | EnemySpawnSine | EnemySpawnSnake;
 interface EntityBase {
   el: HTMLElement;
   dead?: boolean;
+  x: number;
+  y: number;
 }
 
 export interface Enemy extends EntityBase {
-  type: "enemy";
+  type: 'enemy';
   spawnTime: number;
   enemySpawn: EnemySpawn;
 }
 
 interface Shot extends EntityBase {
-  type: "shot";
+  type: 'shot';
   velocity: Vector;
 }
 
