@@ -194,7 +194,11 @@ function checkCollisions(state: GameState) {
 function updateUI(state: GameState, delta: number) {
   // Update the gameplay status UI.
   if (state.statusEl) {
-    state.statusEl.innerText = `Level: ${state.level}\nLives: ${state.lives}\nScore: ${state.score}`;
+    let newText = `Level: ${state.level}\nLives: ${state.lives}\nScore: ${state.score}`;
+    //  check if state.statusEl.innerText is the same as newText.
+    if (state.statusEl.innerText !== newText) {
+      state.statusEl.innerText = `Level: ${state.level}\nLives: ${state.lives}\nScore: ${state.score}`;
+    }
   }
 
   // Show and hide the modal.
